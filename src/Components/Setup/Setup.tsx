@@ -77,7 +77,10 @@ export default function Setup() {
           </div>
         </div>
         {/*  */}
-        <button className="bg-yellow w-full text-white font-bold flexcenter py-2.5 text-xl rounded-full">
+        <button
+          className="bg-yellow w-full text-white font-bold flexcenter py-2.5 text-xl rounded-full"
+          onClick={() => dispatch({ type: "start" })}
+        >
           Start Game
         </button>
       </div>
