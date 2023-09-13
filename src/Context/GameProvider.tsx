@@ -39,12 +39,18 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
       if (action.payload === undefined)
         throw new Error("'Payload should be a number")
       return { ...state, gridSize: action.payload }
-    case "start":
+    case "start": {
+      const players = Array.from({ length: state.numberOfPlayers }, (_, i) => ({
+        player: i + 1,
+        score: 0,
+      }))
       return {
         ...state,
         allCells: createArray(state.gridSize),
+        players: players,
         status: "playing",
       }
+    }
     case "open": {
       if (action.open === undefined) throw new Error("What was opened")
       if (action.index === undefined) throw new Error("Index required")
@@ -61,15 +67,39 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
       if (action.open === undefined) throw new Error("What was opened")
       if (action.index === undefined) throw new Error("Index required")
       const prev = state.observing[0]
+      // right
       if (prev.number === action.open) {
+        // update score when Player guessed right
+        const updatedScore = state.players.map((player) => {
+          if (player.player === state.currentPlayer) {
+            return { ...player, score: player.score + 10 }
+          } else {
+            return player
+          }
+        })
         return {
           ...state,
           observing: [],
           openedCells: [...state.openedCells, prev.index, action.index],
           blocked: false,
+          players: updatedScore,
         }
       } else {
-        return { ...state, observing: [], blocked: false }
+        if (state.currentPlayer === state.numberOfPlayers)
+          return {
+            ...state,
+            observing: [],
+            blocked: false,
+            currentPlayer: 1,
+          }
+        else {
+          return {
+            ...state,
+            observing: [],
+            blocked: false,
+            currentPlayer: state.currentPlayer + 1,
+          }
+        }
       }
     }
     case "block": {
@@ -90,6 +120,8 @@ const initialState: stateGameType = {
   observing: [],
   openedCells: [],
   blocked: false,
+  players: [],
+  currentPlayer: 1,
 }
 
 function GameProvider({ children }: { children: ReactNode }) {

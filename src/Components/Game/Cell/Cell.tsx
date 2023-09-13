@@ -7,6 +7,8 @@ function Cell({ cell, index }: { cell: number; index: number }) {
     observing.some((observation) => observation.index === index) ||
     openedCells.some((ind) => index === ind)
 
+  const right = openedCells.some((ind) => index === ind)
+
   function handleOpen() {
     if (isOpen || blocked) return
     dispatch({ type: "open", open: cell, index: index })
@@ -24,7 +26,9 @@ function Cell({ cell, index }: { cell: number; index: number }) {
       onClick={handleOpen}
     >
       <div
-        className={`bg-gray rounded-full w-full   h-full flex-center text-2xl font-bold duration-300 ease-in-out ${
+        className={`${
+          right ? "bg-yellow right" : "bg-gray"
+        } rounded-full w-full   h-full flex-center text-2xl font-bold duration-300 ease-in-out ${
           isOpen ? "scale-[101%]" : "scale-0"
         }`}
       >

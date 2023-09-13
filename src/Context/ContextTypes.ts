@@ -17,6 +17,11 @@ type ActionType = {
   index?: number
 }
 
+type PlayerType = {
+  player: number
+  score: number
+}
+
 type stateGameType = {
   theme: string
   numberOfPlayers: number
@@ -26,6 +31,8 @@ type stateGameType = {
   observing: ObserverType
   openedCells: number[]
   blocked: boolean
+  players: PlayerType[]
+  currentPlayer: number
 }
 
 type GameContextType = {
