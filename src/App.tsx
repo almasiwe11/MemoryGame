@@ -1,9 +1,9 @@
-import Hero from "./Components/Hero/Hero"
+import Setup from "./Components/Setup/Setup"
 
 function App() {
   return (
-    <div className="text-blue-400 text-4xl font-bold">
-      <Hero />
+    <div className="h-screen w-screen overflow-hidden">
+      <Setup />
     </div>
   )
 }

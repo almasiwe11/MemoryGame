@@ -2,7 +2,18 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        yellow: "#FDA214",
+        gray: "#BCCED9",
+        "gray-middle": "#304859",
+        "gray-dark": "#152938",
+        whitish: "#F2F2F2",
+        "gray-blue-ligh": "#7191A5",
+        "gray-blue": "#6395B8",
+        "white-2": "#FCFCFC",
+      },
+    },
     screens: {
       sm: "480px",
       md: "768px",
