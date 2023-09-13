@@ -34,6 +34,8 @@ type stateGameType = {
   blocked: boolean
   players: PlayerType[]
   currentPlayer: number
+  moves: number
+  timer: number
 }
 
 type GameContextType = {

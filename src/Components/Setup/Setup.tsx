@@ -8,7 +8,7 @@ export default function Setup() {
   const numPlayersArray = Array.from({ length: 4 }, (_, i) => i + 1)
 
   return (
-    <section className="h-full w-full bg-gray-dark flex-center font-semibold flex-col gap-12 md:gap-16">
+    <section className="h-screen w-full bg-gray-dark flex-center font-semibold flex-col gap-12 md:gap-16">
       <h1 className="text-white text-2xl font-bold tracking-wider">memory</h1>
       <div className="bg-white p-7 md:py-10 md:px-8 flex flex-col max-w-2xl wrapper rounded-xl gap-6 md:gap-8">
         {/*  */}

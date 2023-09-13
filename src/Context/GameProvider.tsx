@@ -31,6 +31,8 @@ function shuffleArray<T>(arr: T[]): T[] {
 
 function reducer(state: stateGameType, action: ActionType): stateGameType {
   switch (action.type) {
+    case "new setup":
+      return initialState
     case "numPlayers":
       if (action.payload === undefined)
         throw new Error("Payload should be a number")
@@ -51,6 +53,8 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
       return {
         ...state,
         allCells: createArray(state.gridSize, state.theme),
+        openedCells: [],
+        observing: [],
         players: players,
         status: "playing",
       }
@@ -76,7 +80,7 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
         // update score when Player guessed right
         const updatedScore = state.players.map((player) => {
           if (player.player === state.currentPlayer) {
-            return { ...player, score: player.score + 10 }
+            return { ...player, score: player.score + 1 }
           } else {
             return player
           }
@@ -87,6 +91,7 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
           openedCells: [...state.openedCells, prev.index, action.index],
           blocked: false,
           players: updatedScore,
+          moves: state.moves + 1,
         }
       } else {
         if (state.currentPlayer === state.numberOfPlayers)
@@ -95,6 +100,7 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
             observing: [],
             blocked: false,
             currentPlayer: 1,
+            moves: state.moves + 1,
           }
         else {
           return {
@@ -102,12 +108,19 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
             observing: [],
             blocked: false,
             currentPlayer: state.currentPlayer + 1,
+            moves: state.moves + 1,
           }
         }
       }
     }
     case "block": {
       return { ...state, blocked: true }
+    }
+    case "victory": {
+      return { ...state, status: "finished" }
+    }
+    case "tick": {
+      return { ...state, timer: state.timer + 1 }
     }
 
     default:
@@ -126,6 +139,8 @@ const initialState: stateGameType = {
   blocked: false,
   players: [],
   currentPlayer: 1,
+  moves: 0,
+  timer: 0,
 }
 
 function GameProvider({ children }: { children: ReactNode }) {

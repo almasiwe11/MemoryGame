@@ -5,7 +5,7 @@ import Game from "./Components/Game/Game"
 function App() {
   const { stateGame } = useGame()
   return (
-    <div className="h-screen w-screen overflow-hidden">
+    <div className=" select-none w-screen overflow-hidden">
       {stateGame.status === "setup" ? <Setup /> : <Game />}
     </div>
   )

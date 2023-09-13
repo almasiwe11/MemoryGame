@@ -9,9 +9,10 @@ export default {
         "gray-middle": "#304859",
         "gray-dark": "#152938",
         whitish: "#F2F2F2",
-        "gray-blue-ligh": "#7191A5",
+        "li-text": "#7191A5",
         "gray-blue": "#6395B8",
         "white-2": "#FCFCFC",
+        li: "#DFE7EC",
       },
     },
     screens: {

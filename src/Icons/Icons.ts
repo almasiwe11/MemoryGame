@@ -34,7 +34,6 @@ import {
   GiWoodCabin,
 } from "react-icons/gi"
 
-import { GrTrigger } from "react-icons/gr"
 import { IconType } from "react-icons"
 
 import {
@@ -74,7 +73,6 @@ const icons: IconType[] = [
   FaMoon,
   FaPizzaSlice,
   FaRocket,
-  GrTrigger,
   SiCounterstrike,
   SiFerrari,
   SiFoodpanda,
