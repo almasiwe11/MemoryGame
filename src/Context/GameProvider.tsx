@@ -5,16 +5,20 @@ import {
   GameContextType,
   CellInfo,
 } from "./ContextTypes"
-
+import { icons } from "../Icons/Icons"
 const GameContext = createContext<GameContextType | null>(null)
 
-function createArray(gridSize: number) {
+function createArray(gridSize: number, theme: string) {
   const uniqeCells = (gridSize * gridSize) / 2
-  const uniqueNumbersArr = Array.from({ length: uniqeCells }, (_, i) => i + 1)
-  return shuffleArray([...uniqueNumbersArr, ...uniqueNumbersArr])
+  const uniqueArr =
+    theme === "Numbers"
+      ? Array.from({ length: uniqeCells }, (_, i) => i + 1)
+      : shuffleArray(icons).slice(0, uniqeCells)
+
+  return shuffleArray([...uniqueArr, ...uniqueArr])
 }
 
-function shuffleArray(arr: number[]) {
+function shuffleArray<T>(arr: T[]): T[] {
   const shuffled = [...arr]
 
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -46,7 +50,7 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
       }))
       return {
         ...state,
-        allCells: createArray(state.gridSize),
+        allCells: createArray(state.gridSize, state.theme),
         players: players,
         status: "playing",
       }

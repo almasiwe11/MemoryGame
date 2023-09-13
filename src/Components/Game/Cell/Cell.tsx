@@ -1,6 +1,7 @@
 import { useGame } from "../../../Context/GameProvider"
+import { IconType } from "react-icons"
 
-function Cell({ cell, index }: { cell: number; index: number }) {
+function CellGame({ cell, index }: { cell: number | IconType; index: number }) {
   const { dispatch, stateGame } = useGame()
   const { observing, openedCells, blocked } = stateGame
   const isOpen =
@@ -32,10 +33,23 @@ function Cell({ cell, index }: { cell: number; index: number }) {
           isOpen ? "scale-[101%]" : "scale-0"
         }`}
       >
-        {cell}
+        {typeof cell === "number" ? (
+          cell
+        ) : (
+          <>
+            {(() => {
+              const Icon = cell
+              return (
+                <div className="scale-[180%]">
+                  <Icon />
+                </div>
+              )
+            })()}
+          </>
+        )}
       </div>
     </div>
   )
 }
 
-export default Cell
+export default CellGame

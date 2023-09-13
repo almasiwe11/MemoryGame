@@ -34,7 +34,8 @@ import {
   GiWoodCabin,
 } from "react-icons/gi"
 
-import { GrAlarm, GrTrigger } from "react-icons/gr"
+import { GrTrigger } from "react-icons/gr"
+import { IconType } from "react-icons"
 
 import {
   SiCounterstrike,
@@ -53,14 +54,13 @@ import {
   SiPremierleague,
   SiProtondb,
   SiRiotgames,
-  SiTapas,
   SiTekton,
   SiTypescript,
   SiWindows10,
   SiYoutube,
 } from "react-icons/si"
 
-const icons = [
+const icons: IconType[] = [
   BsCupHot,
   BsCurrencyDollar,
   BsFire,
@@ -74,7 +74,6 @@ const icons = [
   FaMoon,
   FaPizzaSlice,
   FaRocket,
-  GrAlarm,
   GrTrigger,
   SiCounterstrike,
   SiFerrari,
@@ -92,7 +91,6 @@ const icons = [
   SiPremierleague,
   SiProtondb,
   SiRiotgames,
-  SiTapas,
   SiTekton,
   SiTypescript,
   SiWindows10,

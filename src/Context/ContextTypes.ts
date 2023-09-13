@@ -1,9 +1,10 @@
 import { Dispatch } from "react"
+import { IconType } from "react-icons"
 
 type DispatchType = Dispatch<ActionType>
 
 type CellInfo = {
-  number: number
+  number: number | IconType
   index: number
 }
 
@@ -13,7 +14,7 @@ type ActionType = {
   theme?: string
   type: string
   payload?: number
-  open?: number
+  open?: number | IconType
   index?: number
 }
 
@@ -27,7 +28,7 @@ type stateGameType = {
   numberOfPlayers: number
   gridSize: number
   status: string
-  allCells: number[]
+  allCells: (number | IconType)[]
   observing: ObserverType
   openedCells: number[]
   blocked: boolean

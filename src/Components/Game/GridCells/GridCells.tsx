@@ -1,5 +1,5 @@
 import { useGame } from "../../../Context/GameProvider"
-import Cell from "../Cell/Cell"
+import CellGame from "../Cell/Cell"
 
 function GridCells() {
   const { stateGame } = useGame()
@@ -14,7 +14,7 @@ function GridCells() {
         }`}
       >
         {allCells.map((cell, index) => (
-          <Cell cell={cell} index={index} key={index} />
+          <CellGame cell={cell} index={index} key={index} />
         ))}
       </div>
     </div>
