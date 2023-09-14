@@ -59,6 +59,9 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
         status: "playing",
         timer: 0,
         moves: 0,
+        mobileMenu: false,
+        overlay: false,
+        pause: false,
       }
     }
     case "open": {

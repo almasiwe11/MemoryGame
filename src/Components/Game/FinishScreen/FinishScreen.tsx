@@ -46,7 +46,9 @@ function FinishScreen() {
         <div className="grid grid-cols-2 gap-4">
           <div
             className="bg-yellow text-white flex-center py-3 mt-5 text-lg font-bold rounded-full cursor-pointer"
-            onClick={() => dispatch({ type: "start" })}
+            onClick={() => {
+              dispatch({ type: "start" })
+            }}
           >
             Restart
           </div>

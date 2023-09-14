@@ -29,7 +29,6 @@ export default function MobileMenu() {
           className="button bg-yellow flex-center text-white text-lg p-3 font-bold px-8 rounded-full cursor-pointer"
           onClick={() => {
             dispatch({ type: "start" })
-            dispatch({ type: "toggleMobile" })
           }}
         >
           Restart

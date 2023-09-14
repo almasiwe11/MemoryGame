@@ -1,12 +1,9 @@
-import { BestTypes } from "../../../Context/ContextTypes"
 import { useGame } from "../../../Context/GameProvider"
+import useLocalStorage from "../../../Hooks/useLocalStorage"
 
-type PropTypes = {
-  best: BestTypes
-  inf: number
-}
-
-export default function BestScore({ best, inf }: PropTypes) {
+export default function BestScore() {
+  const { infinityPlaceHolder: inf, rightGridSizeBest: best } =
+    useLocalStorage()
   const { stateGame } = useGame()
   return (
     <div className="max-w-xl w-[90%] mx-auto font-semibold text-2xl lg:flex-center">
