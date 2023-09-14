@@ -18,7 +18,7 @@ function GridCells() {
   }
 
   return (
-    <div className="max-w-xl w-full mx-auto  ">
+    <div className="max-w-xl w-[90%] mx-auto  ">
       <div
         className={`grid  ${gridSize === 4 ? "gap-7" : "gap-3"} `}
         style={gridStyle}

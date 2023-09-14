@@ -43,6 +43,11 @@ type GameContextType = {
   dispatch: DispatchType
 }
 
+type BestTypes = {
+  time: number
+  moves: number
+}
+
 export type {
   GameContextType,
   stateGameType,
@@ -51,4 +56,5 @@ export type {
   ObserverType,
   CellInfo,
   PlayerType,
+  BestTypes,
 }

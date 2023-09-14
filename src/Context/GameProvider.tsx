@@ -57,6 +57,8 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
         observing: [],
         players: players,
         status: "playing",
+        timer: 0,
+        moves: 0,
       }
     }
     case "open": {

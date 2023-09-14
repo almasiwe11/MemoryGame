@@ -1,15 +1,12 @@
 import { useGame } from "../../../Context/GameProvider"
+import DisplayStat from "../DisplayStat/DisplayStat"
 
 export default function Timer() {
   const { stateGame } = useGame()
   const { timer } = stateGame
-  return (
-    <div className="w-full flex justify-between p-4 bg-gray rounded-xl font-semibold">
-      <span className="text-gray-middle">Time</span>
-      <span className="font-extrabold text-2xl">
-        {Math.floor(timer / 60)} : {timer % 60 < 10 ? "0" : ""}
-        {timer % 60}
-      </span>
-    </div>
-  )
+  const timeFormat = `${Math.floor(timer / 60)}:${timer % 60 < 10 ? "0" : ""}${
+    timer % 60
+  }`
+
+  return <DisplayStat left="time" right={timeFormat} />
 }

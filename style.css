@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-.flex-center {
-  @apply flex justify-center items-center;
-}
-
 .flex-flex {
   @apply flex flex-col md:flex-row;
 }
@@ -21,6 +17,10 @@
 @layer components {
   .wrapper {
     @apply max-w-[75rem] mx-auto w-[90%];
+  }
+
+  .flex-center {
+    @apply flex justify-center items-center;
   }
 }
 
