@@ -75,42 +75,28 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
       if (action.open === undefined) throw new Error("What was opened")
       if (action.index === undefined) throw new Error("Index required")
       const prev = state.observing[0]
-      // right
-      if (prev.number === action.open) {
-        // update score when Player guessed right
-        const updatedScore = state.players.map((player) => {
-          if (player.player === state.currentPlayer) {
-            return { ...player, score: player.score + 1 }
-          } else {
-            return player
-          }
-        })
-        return {
-          ...state,
-          observing: [],
-          openedCells: [...state.openedCells, prev.index, action.index],
-          blocked: false,
-          players: updatedScore,
-          moves: state.moves + 1,
-        }
-      } else {
-        if (state.currentPlayer === state.numberOfPlayers)
-          return {
-            ...state,
-            observing: [],
-            blocked: false,
-            currentPlayer: 1,
-            moves: state.moves + 1,
-          }
-        else {
-          return {
-            ...state,
-            observing: [],
-            blocked: false,
-            currentPlayer: state.currentPlayer + 1,
-            moves: state.moves + 1,
-          }
-        }
+      const correct = prev.number === action.open
+      const lastPlayer = state.currentPlayer === state.numberOfPlayers
+      // update score when Player guessed right
+      const updatedScore = state.players.map((player) =>
+        player.player === state.currentPlayer
+          ? { ...player, score: player.score + 1 }
+          : player
+      )
+      return {
+        ...state,
+        observing: [],
+        blocked: false,
+        moves: state.moves + 1,
+        openedCells: correct
+          ? [...state.openedCells, prev.index, action.index]
+          : state.openedCells,
+        players: correct ? updatedScore : state.players,
+        currentPlayer: correct
+          ? state.currentPlayer
+          : lastPlayer
+          ? 1
+          : state.currentPlayer + 1,
       }
     }
     case "block": {
