@@ -147,7 +147,6 @@ const initialState: stateGameType = {
 
 function GameProvider({ children }: { children: ReactNode }) {
   const [stateGame, dispatch] = useReducer(reducer, initialState)
-  console.log(stateGame)
 
   return (
     <GameContext.Provider value={{ stateGame, dispatch }}>

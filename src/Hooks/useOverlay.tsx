@@ -6,16 +6,16 @@ export default function useOverlay() {
   const { overlay } = stateGame
   useEffect(() => {
     if (overlay) {
-      document.body.style.overflow = "hidden"
-      document.documentElement.style.overflow = "hidden"
+      document.body.style.overflowY = "hidden"
+      document.documentElement.style.overflowY = "hidden"
     } else {
-      document.body.style.overflow = "auto"
-      document.documentElement.style.overflow = "auto"
+      document.body.style.overflowY = "auto"
+      document.documentElement.style.overflowY = "auto"
     }
 
     return () => {
-      document.body.style.overflow = "auto"
-      document.documentElement.style.overflow = "auto"
+      document.body.style.overflowY = "auto"
+      document.documentElement.style.overflowY = "auto"
     }
   }, [overlay])
 }

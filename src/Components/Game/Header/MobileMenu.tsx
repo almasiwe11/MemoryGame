@@ -22,7 +22,7 @@ export default function MobileMenu() {
   return (
     <div className="fixed flex-center inset-0 z-50">
       <div
-        className="flex flex-col w-[90%] p-6 bg-white rounded-xl gap-3 "
+        className="flex flex-col w-[90%] p-6 py-8 bg-white rounded-xl gap-3 "
         ref={menuRef}
       >
         <div

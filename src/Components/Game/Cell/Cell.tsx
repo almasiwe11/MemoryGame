@@ -13,6 +13,7 @@ function CellGame({ cell, index }: { cell: number | IconType; index: number }) {
   function handleOpen() {
     if (isOpen || blocked) return
     dispatch({ type: "open", open: cell, index: index })
+    console.log(cell)
 
     if (observing.length === 1) {
       dispatch({ type: "block" })
@@ -40,7 +41,7 @@ function CellGame({ cell, index }: { cell: number | IconType; index: number }) {
             {(() => {
               const Icon = cell
               return (
-                <div className="scale-[180%]">
+                <div className="scale-[125%] ico:scale-[150%] lg:scale-[180%]">
                   <Icon />
                 </div>
               )

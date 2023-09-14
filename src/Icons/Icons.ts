@@ -4,56 +4,31 @@ import {
   FaTwitter,
   FaBell,
   FaCrown,
-  FaHand,
   FaMoon,
   FaPizzaSlice,
-  FaRocket,
 } from "react-icons/fa6"
 
 import { BsCupHot, BsCurrencyDollar, BsFire } from "react-icons/bs"
-import {
-  BiAnchor,
-  BiSolidBabyCarriage,
-  BiSolidKey,
-  BiSolidPlane,
-  BiSolidTruck,
-} from "react-icons/bi"
+import { BiAnchor } from "react-icons/bi"
 
 import { DiJsBadge } from "react-icons/di"
 
-import {
-  GiAlliedStar,
-  GiAngularSpider,
-  GiGhost,
-  GiBootPrints,
-  GiHalt,
-  GiInjustice,
-  GiMeal,
-  GiOverkill,
-  GiYinYang,
-  GiWoodCabin,
-} from "react-icons/gi"
+import { GiGhost, GiYinYang } from "react-icons/gi"
 
 import { IconType } from "react-icons"
 
 import {
   SiCounterstrike,
   SiFerrari,
-  SiFoodpanda,
-  SiFrontendmentor,
   SiGithub,
   SiHappycow,
   SiItunes,
   SiJordan,
   SiLichess,
-  SiMailchimp,
-  SiMamp,
-  SiMeta,
   SiPlaywright,
   SiPremierleague,
   SiProtondb,
   SiRiotgames,
-  SiTekton,
   SiTypescript,
   SiWindows10,
   SiYoutube,
@@ -69,45 +44,25 @@ const icons: IconType[] = [
   FaTwitter,
   FaBell,
   FaCrown,
-  FaHand,
   FaMoon,
   FaPizzaSlice,
-  FaRocket,
   SiCounterstrike,
   SiFerrari,
-  SiFoodpanda,
-  SiFrontendmentor,
   SiGithub,
   SiHappycow,
   SiItunes,
   SiJordan,
   SiLichess,
-  SiMailchimp,
-  SiMamp,
-  SiMeta,
   SiPlaywright,
   SiPremierleague,
   SiProtondb,
   SiRiotgames,
-  SiTekton,
   SiTypescript,
   SiWindows10,
   SiYoutube,
-  GiAlliedStar,
-  GiAngularSpider,
   GiGhost,
-  GiBootPrints,
-  GiHalt,
-  GiInjustice,
-  GiMeal,
-  GiOverkill,
   GiYinYang,
-  GiWoodCabin,
   BiAnchor,
-  BiSolidBabyCarriage,
-  BiSolidKey,
-  BiSolidPlane,
-  BiSolidTruck,
 ]
 
 export { icons }

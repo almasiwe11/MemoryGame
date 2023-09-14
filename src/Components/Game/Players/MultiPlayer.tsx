@@ -16,13 +16,15 @@ export default function MultiPlayer() {
               <div className="bg-yellow absolute h-4 w-8 cut -top-4 bottom-0 left-[50%] translate-x-[-50%]"></div>
             )}
             <span
-              className={`${
+              className={`flex  gap-2 ${
                 currentPlayer === player.player
                   ? "text-white"
                   : "text-gray-dark"
               }`}
             >
-              Player {player.player}
+              <span className="hidden md:block">Player</span>{" "}
+              <span className="md:hidden">P</span>
+              {player.player}
             </span>
             <span
               className={`${

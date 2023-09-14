@@ -5,6 +5,9 @@ export default function BestScore() {
   const { infinityPlaceHolder: inf, rightGridSizeBest: best } =
     useLocalStorage()
   const { stateGame } = useGame()
+  const timeFormat = `${Math.floor(best.time / 60)}:${
+    best.time % 60 < 10 ? "0" : ""
+  }${best.time % 60}`
   return (
     <div className="max-w-xl w-[90%] mx-auto font-semibold text-2xl lg:flex-center">
       {best.moves < inf && stateGame.numberOfPlayers === 1 && (
@@ -16,7 +19,7 @@ export default function BestScore() {
           <div className="flex lg:flex-col  gap-3 w-full">
             <span className="text-2xl font-bold text-gray-middle">
               {" "}
-              Time: {best.time}
+              Time: {timeFormat}
             </span>
             <span className="text-2xl font-bold text-gray-middle">
               Moves: {best.moves}

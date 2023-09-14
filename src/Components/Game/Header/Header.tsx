@@ -4,7 +4,6 @@ import MobileMenu from "./MobileMenu"
 export default function Header() {
   const { dispatch, stateGame } = useGame()
   const { mobileMenu } = stateGame
-  console.log(mobileMenu)
   return (
     <div className="flex justify-between wrapper items-center">
       <Logo />
