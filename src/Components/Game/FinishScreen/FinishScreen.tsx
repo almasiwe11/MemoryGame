@@ -1,43 +1,47 @@
 import { useGame } from "../../../Context/GameProvider"
+import PlayersScore from "./PlayersScore"
 
 function FinishScreen() {
   const { stateGame, dispatch } = useGame()
-  const { players } = stateGame
+  const { players, numberOfPlayers, timer, moves } = stateGame
   const sortedPlayers = players.sort((a, b) => b.score - a.score)
   const maxScore = sortedPlayers[0].score
   return (
     <div className="fixed inset-0 flex-center z-50 ">
       <div className="bg-white max-w-xl w-[90%] p-5 md:px-10 md:py-12 rounded-xl flex flex-col gap-4 text-center">
         <h1 className="text-gray-dark font-bold text-4xl">
-          {sortedPlayers[0].score === sortedPlayers[1].score
-            ? "It's a tie"
-            : `Player ${sortedPlayers[0].player} wins`}
+          {numberOfPlayers > 1
+            ? sortedPlayers[0].score === sortedPlayers[1].score
+              ? "It's a tie"
+              : `Player ${sortedPlayers[0].player} wins`
+            : `You did it!`}
         </h1>
-        <p className="text-li-text">Game over! Here are the results...</p>
+        <p className="text-li-text">
+          Game over!{" "}
+          {numberOfPlayers > 1
+            ? "Here are the results..."
+            : "Here's how you got on"}
+        </p>
         <ul className="flex flex-col gap-4">
-          {sortedPlayers.map((player) => (
-            <li
-              key={player.player}
-              className={`rounded-xl ${
-                player.score === maxScore ? "bg-gray-dark" : "bg-li "
-              } flex justify-between p-5 px-9`}
-            >
-              <span
-                className={`${
-                  player.score === maxScore ? "text-white" : "text-li-text"
-                } font-bold text-lg`}
-              >
-                Player {player.player} {player.score === maxScore && "(Winner)"}
-              </span>
-              <span
-                className={`text-2xl font-bold ${
-                  player.score === maxScore ? "text-white" : "text-gray-dark"
-                }`}
-              >
-                {player.score} Pairs
-              </span>
-            </li>
-          ))}
+          {numberOfPlayers > 1 ? (
+            <PlayersScore sortedPlayers={sortedPlayers} maxScore={maxScore} />
+          ) : (
+            <>
+              <li className={`rounded-xl  bg-li flex justify-between p-5 px-9`}>
+                <span className="text-li-text">Time Elapsed</span>
+                <span className="font-extrabold text-gray-dark text-2xl">
+                  {Math.floor(timer / 60)} : {timer % 60 < 10 ? "0" : ""}
+                  {timer % 60}
+                </span>
+              </li>
+              <li className={`rounded-xl  bg-li flex justify-between p-5 px-9`}>
+                <span className="text-li-text">Moves Taken</span>
+                <span className="font-extrabold text-gray-dark text-2xl">
+                  {moves} Moves
+                </span>
+              </li>
+            </>
+          )}
         </ul>
         <div className="grid grid-cols-2 gap-4">
           <div

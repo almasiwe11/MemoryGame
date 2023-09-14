@@ -9,15 +9,17 @@ function Game() {
   useEffect(() => {
     let timer: number
     if (numberOfPlayers === 1) {
-      timer = setInterval(() => {
-        dispatch({ type: "tick" })
-      }, 1000)
+      if (status !== "finished") {
+        timer = setInterval(() => {
+          dispatch({ type: "tick" })
+        }, 1000)
+      }
     }
 
     return () => {
       clearInterval(timer)
     }
-  }, [dispatch, numberOfPlayers])
+  }, [dispatch, numberOfPlayers, status])
   return (
     <div className="  pt-16 pb-6 h-full w-full  flex flex-col gap-12">
       {status === "finished" && (

@@ -50,4 +50,5 @@ export type {
   DispatchType,
   ObserverType,
   CellInfo,
+  PlayerType,
 }
