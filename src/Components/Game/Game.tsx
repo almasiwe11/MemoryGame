@@ -4,27 +4,51 @@ import GridCells from "./GridCells/GridCells"
 import Players from "./Players/Players"
 import { useGame } from "../../Context/GameProvider"
 import BestScore from "./BestScore/BestScore"
-import { BestTypes } from "../../Context/ContextTypes"
+import { BestTypes, BestResults } from "../../Context/ContextTypes"
 function Game() {
+  const infinityPlaceHolder = 999999999999999
   const { stateGame, dispatch } = useGame()
-  const { numberOfPlayers, status, moves, timer } = stateGame
+  const { numberOfPlayers, status, moves, timer, gridSize, overlay, pause } =
+    stateGame
 
-  const savedBestResult = localStorage.getItem("bestResult")
-  const defaultBestResult: BestTypes = {
-    time: Infinity,
-    moves: Infinity,
+  const infiniteReslts: BestTypes = {
+    time: infinityPlaceHolder,
+    moves: infinityPlaceHolder,
   }
 
-  const initialBestResult = savedBestResult
-    ? (JSON.parse(savedBestResult) as BestTypes)
-    : defaultBestResult
+  const allBestResultsInfinite: BestResults = {
+    4: infiniteReslts,
+    6: infiniteReslts,
+  }
 
-  const [best, setBest] = useState<BestTypes>(initialBestResult)
+  const bestFromStorage = localStorage.getItem("bestResults")
+
+  const [allBestResults, setAllBestResults] = useState<BestResults>(
+    bestFromStorage ? JSON.parse(bestFromStorage) : allBestResultsInfinite
+  )
+
+  const rightGridSizeBest = allBestResults[gridSize]
+
+  useEffect(() => {
+    if (status === "finished") {
+      const newBest = { ...rightGridSizeBest }
+      const newBestAll = { ...allBestResults }
+      if (timer < rightGridSizeBest.time) {
+        newBest.time = timer
+      }
+      if (moves < rightGridSizeBest.moves) {
+        newBest.moves = moves
+      }
+      newBestAll[gridSize] = newBest
+      setAllBestResults(newBestAll)
+      localStorage.setItem("bestResults", JSON.stringify(newBestAll))
+    }
+  }, [status, moves, allBestResults, gridSize, timer, rightGridSizeBest])
 
   useEffect(() => {
     let timer: number
     if (numberOfPlayers === 1) {
-      if (status !== "finished") {
+      if (status !== "finished" && !pause) {
         timer = setInterval(() => {
           dispatch({ type: "tick" })
         }, 1000)
@@ -34,35 +58,32 @@ function Game() {
     return () => {
       clearInterval(timer)
     }
-  }, [dispatch, numberOfPlayers, status])
+  }, [dispatch, numberOfPlayers, status, pause])
 
   useEffect(() => {
-    if (status === "finished") {
-      const newBest = { ...best }
-
-      if (best.time > timer) {
-        newBest.time = timer
-      }
-
-      if (best.moves > moves) {
-        newBest.moves = moves
-      }
-
-      setBest(newBest)
-
-      localStorage.setItem("bestResult", JSON.stringify(newBest))
+    if (overlay) {
+      document.body.style.overflow = "hidden"
+      document.documentElement.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+      document.documentElement.style.overflow = "auto"
     }
-  }, [status])
+
+    return () => {
+      document.body.style.overflow = "auto"
+      document.documentElement.style.overflow = "auto"
+    }
+  }, [overlay])
 
   return (
     <div className="  pt-16 pb-6 h-full w-full  flex flex-col gap-12">
-      {status === "finished" && (
+      {overlay && (
         <div className="fixed inset-0 bg-black/30 h-screen w-screen z-10"></div>
       )}
 
       <Header />
       <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[1fr_2fr_1fr]">
-        <BestScore best={best} />
+        <BestScore best={rightGridSizeBest} inf={infinityPlaceHolder} />
         <GridCells />
       </div>
       <Players />

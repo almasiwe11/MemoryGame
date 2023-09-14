@@ -16,6 +16,7 @@ type ActionType = {
   payload?: number
   open?: number | IconType
   index?: number
+  gridSize?: keyof BestResults
 }
 
 type PlayerType = {
@@ -26,7 +27,7 @@ type PlayerType = {
 type stateGameType = {
   theme: string
   numberOfPlayers: number
-  gridSize: number
+  gridSize: keyof BestResults
   status: string
   allCells: (number | IconType)[]
   observing: ObserverType
@@ -36,6 +37,9 @@ type stateGameType = {
   currentPlayer: number
   moves: number
   timer: number
+  overlay: boolean
+  mobileMenu: boolean
+  pause: boolean
 }
 
 type GameContextType = {
@@ -48,6 +52,11 @@ type BestTypes = {
   moves: number
 }
 
+type BestResults = {
+  4: BestTypes
+  6: BestTypes
+}
+
 export type {
   GameContextType,
   stateGameType,
@@ -57,4 +66,5 @@ export type {
   CellInfo,
   PlayerType,
   BestTypes,
+  BestResults,
 }

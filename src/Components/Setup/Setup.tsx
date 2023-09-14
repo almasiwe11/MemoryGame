@@ -9,7 +9,7 @@ export default function Setup() {
 
   return (
     <section className="h-screen w-full bg-gray-dark flex-center font-semibold flex-col gap-12 md:gap-16">
-      <h1 className="text-white text-2xl font-bold tracking-wider">memory</h1>
+      <h1 className="text-white text-4xl font-bold tracking-wider">memory</h1>
       <div className="bg-white p-7 md:py-10 md:px-8 flex flex-col max-w-2xl wrapper rounded-xl gap-6 md:gap-8">
         {/*  */}
         <div className="flex flex-col gap-4">
@@ -62,7 +62,7 @@ export default function Setup() {
               className={`${buttonStyle} ${
                 stateGame.gridSize === 4 ? "bg-gray-dark" : "bg-gray"
               }`}
-              onClick={() => dispatch({ type: "gridSize", payload: 4 })}
+              onClick={() => dispatch({ type: "gridSize", gridSize: 4 })}
             >
               4x4
             </button>
@@ -70,7 +70,7 @@ export default function Setup() {
               className={`${buttonStyle} ${
                 stateGame.gridSize === 6 ? "bg-gray-dark" : "bg-gray"
               }`}
-              onClick={() => dispatch({ type: "gridSize", payload: 6 })}
+              onClick={() => dispatch({ type: "gridSize", gridSize: 6 })}
             >
               6x6
             </button>

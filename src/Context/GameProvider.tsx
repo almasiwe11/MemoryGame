@@ -22,7 +22,7 @@ function shuffleArray<T>(arr: T[]): T[] {
   const shuffled = [...arr]
 
   for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * shuffled.length)
+    const j = Math.floor(Math.random() * (i + 1))
     ;[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
   }
 
@@ -42,9 +42,9 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
         throw new Error("'Theme' expected as a string")
       return { ...state, theme: action.theme }
     case "gridSize":
-      if (action.payload === undefined)
-        throw new Error("'Payload should be a number")
-      return { ...state, gridSize: action.payload }
+      if (action.gridSize === undefined)
+        throw new Error("'Gridsize should be a specified")
+      return { ...state, gridSize: action.gridSize }
     case "start": {
       const players = Array.from({ length: state.numberOfPlayers }, (_, i) => ({
         player: i + 1,
@@ -105,10 +105,18 @@ function reducer(state: stateGameType, action: ActionType): stateGameType {
       return { ...state, blocked: true }
     }
     case "victory": {
-      return { ...state, status: "finished" }
+      return { ...state, status: "finished", overlay: true }
     }
     case "tick": {
       return { ...state, timer: state.timer + 1 }
+    }
+    case "toggleMobile": {
+      return {
+        ...state,
+        mobileMenu: !state.mobileMenu,
+        overlay: !state.overlay,
+        pause: !state.pause,
+      }
     }
 
     default:
@@ -129,6 +137,9 @@ const initialState: stateGameType = {
   currentPlayer: 1,
   moves: 0,
   timer: 0,
+  overlay: false,
+  mobileMenu: false,
+  pause: false,
 }
 
 function GameProvider({ children }: { children: ReactNode }) {
